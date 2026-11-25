@@ -17,14 +17,15 @@ public class Registro {
     private Registro() {
     }
 
-    // TODO Sergio: instante de inicio de la simulación.
+    /** Instante de inicio de la simulación, en milisegundos. */
+    private static long inicio;
 
     /**
      * Guarda el instante de inicio de la simulación. Lo llama el Main al
      * empezar.
      */
     public static void iniciar() {
-        // TODO Sergio
+        inicio = System.currentTimeMillis();
     }
 
     /**
@@ -35,7 +36,13 @@ public class Registro {
      * @param mensaje  texto del evento
      */
     public static synchronized void log(String etiqueta, String mensaje) {
-        // TODO Sergio: añadir la marca de tiempo [mm:ss.mmm]
-        System.out.println("[" + etiqueta + "] " + mensaje);
+        long transcurrido = System.currentTimeMillis() - inicio;
+
+        long minutos = transcurrido / 60000;
+        long segundos = (transcurrido / 1000) % 60;
+        long millis = transcurrido % 1000;
+
+        System.out.println(String.format("[%02d:%02d.%03d] [%s] %s",
+                minutos, segundos, millis, etiqueta, mensaje));
     }
 }
