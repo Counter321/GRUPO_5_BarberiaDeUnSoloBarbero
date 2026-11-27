@@ -72,6 +72,17 @@ public abstract class Cliente extends Thread {
      */
     @Override
     public void run() {
-        // TODO Fernando
+        Resultado resultado = sala.entrar(this);
+
+        if (resultado == Resultado.SENTADO) {
+            Registro.log(getTipo() + " " + id + " espera su turno");
+            resultado = sala.esperarTurno(this);
+        }
+
+        if (resultado == Resultado.AL_BARBERO) {
+            Registro.log(getTipo() + " " + id + " ha llegado al barbero");
+        } else if (resultado == Resultado.LLENO) {
+            Registro.log(getTipo() + " " + id + " se marcha (sin silla o tiempo agotado)");
+        }
     }
 }

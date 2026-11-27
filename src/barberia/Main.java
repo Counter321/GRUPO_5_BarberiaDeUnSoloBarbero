@@ -22,11 +22,34 @@ public class Main {
      * @throws InterruptedException si el hilo main es interrumpido
      */
     public static void main(String[] args) throws InterruptedException {
-        // TODO Fernando:
-        // 1. Registro.iniciar()
-        // 2. Crear la SalaEspera y el Barbero, y arrancar el barbero
-        // 3. Crear y arrancar clientes de los tres tipos, con pausas entre llegadas
-        // 4. join() de los clientes, sala.cerrar() y join() del barbero
-        // 5. Imprimir el resumen: atendidos, marchados por sala llena y desertores
+        Registro.iniciar();
+
+        SalaEspera sala = new SalaEspera(5);
+        Barbero barbero = new Barbero(sala, 2000);
+        barbero.start();
+
+        java.util.ArrayList<Cliente> clientes = new java.util.ArrayList<>();
+        for (int id = 1; id <= 15; id++) {
+            Cliente cliente;
+            if (id % 7 == 0) {
+                cliente = new ClienteVIP(id, sala);
+            } else if (id % 3 == 0) {
+                cliente = new ClienteImpaciente(id, sala);
+            } else {
+                cliente = new ClienteNormal(id, sala);
+            }
+
+            cliente.start();
+            clientes.add(cliente);
+            Thread.sleep(250);
+        }
+
+        for (Cliente cliente : clientes) {
+            cliente.join();
+        }
+
+        sala.cerrar();
+        barbero.join();
+        Registro.resumen(sala);
     }
 }

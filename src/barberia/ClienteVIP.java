@@ -21,21 +21,18 @@ public class ClienteVIP extends Cliente {
     /** {@inheritDoc} */
     @Override
     public String getTipo() {
-        // TODO Fernando
-        return "";
+        return "VIP";
     }
 
     /** {@inheritDoc} */
     @Override
     public long getMaxEsperaMs() {
-        // TODO Fernando
         return 0;
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean esVip() {
-        // TODO Fernando
-        return false;
+        return true;
     }
 }

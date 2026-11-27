@@ -21,21 +21,18 @@ public class ClienteImpaciente extends Cliente {
     /** {@inheritDoc} */
     @Override
     public String getTipo() {
-        // TODO Fernando
-        return "";
+        return "Impaciente";
     }
 
     /** {@inheritDoc} */
     @Override
     public long getMaxEsperaMs() {
-        // TODO Fernando
-        return 0;
+        return 3000;
     }
 
     /** {@inheritDoc} */
     @Override
     public boolean esVip() {
-        // TODO Fernando
         return false;
     }
 }
