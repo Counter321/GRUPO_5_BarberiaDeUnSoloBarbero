@@ -10,6 +10,8 @@ package barberia;
  * @author Sergio Cadena
  * @version 0.1
  */
+
+
 public class Barbero extends Thread {
 
     /** Sala de espera de la que el barbero coge a los clientes. */
