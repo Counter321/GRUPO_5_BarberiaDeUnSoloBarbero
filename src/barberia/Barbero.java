@@ -30,35 +30,7 @@ public class Barbero extends Thread {
      */
     @Override
     public void run() {
-        // Cliente al que acabamos de cortar el pelo. Al principio no hay
-        // ninguno, así que empieza en null.
-        Cliente anterior = null;
-
-        try {
-            while (true) {
-                // Le pedimos el siguiente cliente a la sala. Si no hay nadie,
-                // este método deja al barbero dormido (wait) hasta que llegue
-                // alguien. Aquí NO se programa el dormir/despertar.
-                Cliente cliente = sala.siguienteCliente(anterior);
-
-                // null = la sala ha cerrado y no queda nadie: terminamos.
-                if (cliente == null) {
-                    break;
-                }
-
-                // Cortamos el pelo. Esto ocurre FUERA de siguienteCliente(),
-                // o sea, sin tener el candado de la sala cogido.
-                cortarPelo(cliente);
-
-                // Guardamos a este cliente para pasárselo a la sala en la
-                // siguiente vuelta del bucle.
-                anterior = cliente;
-            }
-        } catch (InterruptedException e) {
-            // Nos han interrumpido durante el corte: restauramos la marca de
-            // interrupción y salimos del bucle, así que el hilo acaba.
-            Thread.currentThread().interrupt();
-        }
+        // TODO Sergio
     }
 
     /**
@@ -69,9 +41,6 @@ public class Barbero extends Thread {
      * @throws InterruptedException si el barbero es interrumpido durante el corte
      */
     private void cortarPelo(Cliente c) throws InterruptedException {
-        // Simulamos el corte con una pausa de 2 segundos. Como no hay
-        // synchronized aquí, los clientes pueden seguir entrando a la sala
-        // mientras el barbero duerme.
-        Thread.sleep(2000);
+        // TODO Sergio
     }
 }
